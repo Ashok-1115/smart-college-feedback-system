@@ -1,0 +1,32 @@
+using Microsoft.AspNetCore.Mvc;
+using SmartFeedbackAPI.Data;
+using SmartFeedbackAPI.Models;
+
+namespace SmartFeedbackAPI.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ComplaintsController : ControllerBase
+    {
+        private readonly AppDbContext _context;
+
+        public ComplaintsController(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateComplaint(Complaint complaint)
+        {
+            _context.Complaints.Add(complaint);
+            await _context.SaveChangesAsync();
+            return Ok(complaint);
+        }
+
+        [HttpGet]
+        public IActionResult GetComplaints()
+        {
+            return Ok(_context.Complaints.ToList());
+        }
+    }
+}
