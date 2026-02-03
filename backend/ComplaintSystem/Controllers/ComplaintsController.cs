@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using SmartFeedbackAPI.Data;
-using SmartFeedbackAPI.Models;
+using ComplaintSystem.Data;
+using ComplaintSystem.Models;
 
-namespace SmartFeedbackAPI.Controllers
+namespace ComplaintSystem.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

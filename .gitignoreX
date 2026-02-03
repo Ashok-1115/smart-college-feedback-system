@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Node / React
+node_modules/
+.cache/
+
+# .NET
+bin/
+obj/
+
+# Environment
+.env
+

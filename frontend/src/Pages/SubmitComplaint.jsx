@@ -82,13 +82,14 @@ export default function SubmitComplaint() {
           title: formData.title,
           category: formData.category,
           description: formData.description,
-          status: "Pending"
+          status: "Pending",
+          userId: 1  
         })
       });
 
       if (response.ok) {
         const data = await response.json();
-        alert(`Complaint submitted successfully! Tracking ID: CMP${data.id}`);
+        alert(`Complaint submitted successfully! Tracking ID: CMP${String(data.id).padStart(6, '0')}`);
         // Reset form
         setFormData({
           title: '',
@@ -97,10 +98,12 @@ export default function SubmitComplaint() {
           file: null
         });
       } else {
+        const errorText = await response.text();
+        console.error("Error response:", errorText);
         alert("Error submitting complaint. Try again later.");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Fetch error:", err);
       alert("Server error. Please check backend.");
     }
 
